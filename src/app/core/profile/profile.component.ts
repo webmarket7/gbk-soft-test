@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngxs/store';
+import { Logout } from '../../state/auth/auth.actions';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -8,10 +11,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-    constructor() {
+    constructor(private readonly store: Store,
+                private readonly router: Router) {
     }
 
     ngOnInit(): void {
     }
 
+    logout(): void {
+        this.store.dispatch(new Logout())
+            .subscribe((state) => {
+                if (!state.auth.isAuthenticated) {
+                    this.router.navigate(['/auth', 'login']);
+                }
+            });
+    }
 }

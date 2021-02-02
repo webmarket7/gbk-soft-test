@@ -1,1 +1,33 @@
-<p>login works!</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+    <h1>Login</h1>
+    <mat-form-field appearance='fill'>
+        <mat-label>Email</mat-label>
+        <div matPrefix>
+            <mat-icon>email</mat-icon>
+        </div>
+        <input type='email' matInput formControlName='email'>
+        <mat-hint>Example: markus.w@gmail.com</mat-hint>
+        <mat-error *ngIf='emailControl.invalid'>{{ getEmailErrorMessage() }}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance='fill'>
+        <mat-label>Password</mat-label>
+        <div matPrefix>
+            <mat-icon>password</mat-icon>
+        </div>
+        <input type='password' matInput formControlName='password'>
+        <mat-hint>6 characters or more</mat-hint>
+        <mat-error *ngIf='passwordControl.invalid'>{{ getPasswordErrorMessage() }}</mat-error>
+    </mat-form-field>
+    <div class="form-controls">
+        <button mat-raised-button
+                color="primary"
+                [disabled]="form.invalid"
+        >Login</button>
+    </div>
+</form>
+<div class="more-actions-box__wrapper">
+    <div class="more-actions-box">
+        <span>Don't have account yet? </span>
+        <a mat-button [routerLink]="['/auth', 'register']">Register</a>
+    </div>
+</div>

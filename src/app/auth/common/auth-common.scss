@@ -1,0 +1,27 @@
+form {
+    width: 100%;
+}
+
+.mat-form-field {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.form-controls {
+    display: flex;
+    justify-content: center;
+
+    > button {
+        width: 50%;
+    }
+}
+
+.more-actions-box {
+    &__wrapper {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-top: 20px;
+        width: 100%;
+    }
+}
