@@ -1,0 +1,12 @@
+<label
+    [style.background-image]="getPreviewImageURL(this.preview)"
+    [class.with-preview]='preview'
+>
+    <div class="image-uploader__wrapper">
+        <mat-icon>cloud_upload</mat-icon>
+        <p><span>Drag image here</span><br>or<br>click to select</p>
+    </div>
+
+    <input type="file" accept="image/png, image/jpeg" (change)='onChange($event)'>
+</label>
+<p class="image-uploader__hint">png, jpg</p>

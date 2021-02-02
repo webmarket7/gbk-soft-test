@@ -1,0 +1,60 @@
+<main *ngIf="(userProfile$ | async) as userProfile">
+    <h1>Edit My Profile</h1>
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+        <article>
+            <aside>
+                <app-image-uploader formControlName="image"></app-image-uploader>
+                <div class="image-controls" *ngIf="imageControl.value">
+                    <button mat-raised-button
+                            type="button"
+                            color="warn"
+                            (click)="onDeleteImage($event)"
+                    >Delete Image</button>
+                </div>
+            </aside>
+            <section formGroupName="profile">
+                <mat-form-field appearance='fill'>
+                    <mat-label>First Name</mat-label>
+                    <input type='text' matInput formControlName='firstName'>
+                    <mat-error
+                        *ngIf='firstNameControl.invalid'>{{ getTextFieldErrorMessage(firstNameControl) }}</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance='fill'>
+                    <mat-label>Last Name</mat-label>
+                    <input type='text' matInput formControlName='lastName'>
+                    <mat-error
+                        *ngIf='lastNameControl.invalid'>{{ getTextFieldErrorMessage(lastNameControl) }}</mat-error>
+                </mat-form-field>
+
+                <div class="radio-group-wrapper">
+                    <mat-radio-group formControlName="gender">
+                        <mat-radio-button value="male">Male</mat-radio-button>
+                        <mat-radio-button value="female">Female</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+
+                <mat-form-field appearance='fill'>
+                    <mat-label>Country</mat-label>
+                    <input type='text' matInput formControlName='country'>
+                    <mat-error
+                        *ngIf='countryControl.invalid'>{{ getTextFieldErrorMessage(lastNameControl) }}</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance='fill'>
+                    <mat-label>City</mat-label>
+                    <input type='text' matInput formControlName='city'>
+                    <mat-error *ngIf='cityControl.invalid'>{{ getTextFieldErrorMessage(lastNameControl) }}</mat-error>
+                </mat-form-field>
+
+                <div class="form-controls">
+                    <button mat-raised-button
+                            color="primary"
+                            [disabled]="form.pristine || form.invalid"
+                    >Save
+                    </button>
+                </div>
+            </section>
+        </article>
+    </form>
+</main>

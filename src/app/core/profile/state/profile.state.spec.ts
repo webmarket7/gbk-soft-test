@@ -1,13 +1,13 @@
 import { TestBed, async } from '@angular/core/testing';
 import { NgxsModule, Store } from '@ngxs/store';
-import { AuthState } from './auth.state';
+import { ProfileState } from './profile.state';
 
 
-describe('Auth store', () => {
+describe('Profile store', () => {
     let store: Store;
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [NgxsModule.forRoot([AuthState])]
+            imports: [NgxsModule.forRoot([ProfileState])]
         }).compileComponents();
         store = TestBed.get(Store);
     }));

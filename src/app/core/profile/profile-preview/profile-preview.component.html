@@ -1,0 +1,37 @@
+<main *ngIf="(userProfile$ | async) as userProfile">
+    <aside>
+        <img [src]="userProfile.image" alt="User image">
+    </aside>
+    <article>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>First Name:</td>
+                    <td>{{ userProfile.firstName }}</td>
+                </tr>
+                <tr>
+                    <td>Last Name:</td>
+                    <td>{{ userProfile.lastName }}</td>
+                </tr>
+                <tr>
+                    <td>Gender:</td>
+                    <td>{{ userProfile.gender | titlecase }}</td>
+                </tr>
+                <tr>
+                    <td>Country:</td>
+                    <td>{{ userProfile.country }}</td>
+                </tr>
+                <tr>
+                    <td>City:</td>
+                    <td>{{ userProfile.city }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </article>
+</main>
