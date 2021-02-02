@@ -8,6 +8,14 @@ import { UsersNavbarComponent } from './users-navbar/users-navbar.component';
 import { UsersComponent } from './users.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { FullNameModule } from '../../shared/full-name/full-name.module';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { NgxsModule } from '@ngxs/store';
+import { UsersState } from './users/users.state';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,8 +23,15 @@ import { MatIconModule } from '@angular/material/icon';
     imports: [
         CommonModule,
         UsersRoutingModule,
+        NgxsModule.forFeature([UsersState]),
         MatButtonModule,
-        MatIconModule
+        MatIconModule,
+        MatTableModule,
+        FullNameModule,
+        MatPaginatorModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule
     ]
 })
 export class UsersModule { }

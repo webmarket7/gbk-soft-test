@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { ProfileState } from '../state/profile.state';
 import { Observable } from 'rxjs';
@@ -7,7 +7,6 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { DeleteUserProfileImage, FetchCurrentUserProfile, SetUserProfileImage, UpdateUserProfile } from '../state/profile.actions';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Logout } from '../../../state/auth/auth.actions';
 
 
 @UntilDestroy()
@@ -52,7 +51,8 @@ export class ProfileEditorComponent implements OnInit {
     constructor(private readonly store: Store,
                 private readonly router: Router,
                 private readonly route: ActivatedRoute,
-                private readonly fb: FormBuilder
+                private readonly fb: FormBuilder,
+                private readonly cdr: ChangeDetectorRef
     ) {
         this.form = this.fb.group({
             image: [''],
@@ -96,7 +96,11 @@ export class ProfileEditorComponent implements OnInit {
                 this.store.dispatch(new SetUserProfileImage({ image: formData }));
             }
 
-            this.store.dispatch(new UpdateUserProfile({ updatePayload: formValue.profile }));
+            this.store.dispatch(new UpdateUserProfile({ updatePayload: formValue.profile }))
+                .subscribe(() => {
+                    this.form.markAsPristine();
+                    this.cdr.markForCheck();
+                });
         }
     }
 

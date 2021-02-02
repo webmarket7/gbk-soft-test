@@ -31,7 +31,6 @@ export class ProfileState {
         return state.userProfile;
     }
 
-
     constructor(private readonly profileService: ProfileService) {
     }
 

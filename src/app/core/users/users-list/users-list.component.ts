@@ -1,15 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
+import { User } from '../../../common/models/user.models';
+import { Select, Store } from '@ngxs/store';
+import { UsersState } from '../users/users.state';
+
 
 @Component({
-  selector: 'app-users-list',
-  templateUrl: './users-list.component.html',
-  styleUrls: ['./users-list.component.scss']
+    selector: 'app-users-list',
+    templateUrl: './users-list.component.html',
+    styleUrls: ['./users-list.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UsersListComponent implements OnInit {
+export class UsersListComponent {
 
-  constructor() { }
+    @Select(UsersState.users)
+    users$: Observable<User[]>;
 
-  ngOnInit(): void {
-  }
+    displayedColumns: string[] = ['email', 'name', 'gender', 'country', 'city'];
 
+    constructor(private readonly store: Store) {
+    }
 }

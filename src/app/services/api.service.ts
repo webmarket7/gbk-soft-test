@@ -16,8 +16,18 @@ export class ApiService {
     ) {
     }
 
-    static prepareParams<P extends { [param: string]: string }>(params: P): HttpParams {
-        return new HttpParams({fromObject: params || {}});
+    static prepareParams<P>(params: P): HttpParams {
+        const prepared: {[param: string]: string} = {};
+
+        if (params) {
+            for (const key in params) {
+                if (params.hasOwnProperty(key)) {
+                    prepared[key] = `${params[key]}`;
+                }
+            }
+        }
+
+        return new HttpParams({fromObject: prepared});
     }
 
     static prepareHeaders(headers: HeadersObj): HttpHeaders {
