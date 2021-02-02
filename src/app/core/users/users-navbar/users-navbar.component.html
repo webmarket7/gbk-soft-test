@@ -1,0 +1,24 @@
+<nav>
+    <section>
+        <ul>
+            <li *ngFor="let tab of tabs">
+                <a mat-button [routerLink]="tab.path" routerLinkActive="active">{{ tab.label }}</a>
+            </li>
+        </ul>
+    </section>
+    <section>
+        <mat-form-field appearance="outline">
+            <mat-label>Search</mat-label>
+            <input matInput placeholder="Placeholder" [formControl]="searchControl">
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+    </section>
+    <section>
+        <button mat-mini-fab color="primary"  [routerLink]="['/app', 'profile']">
+            <mat-icon >account_circle</mat-icon>
+        </button>
+    </section>
+</nav>
+
+
+

@@ -31,8 +31,14 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "./src/scss"
+              ]
+            },
             "scripts": []
           },
           "configurations": {
@@ -94,6 +100,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -127,5 +134,9 @@
       }
     }
   },
-  "defaultProject": "gbk-soft-test"
+  "defaultProject": "gbk-soft-test",
+  "cli": {
+    "analytics": "68b812cf-9d31-4656-ac37-59baef8d322a",
+    "defaultCollection": "@ngxs/schematics"
+  }
 }
